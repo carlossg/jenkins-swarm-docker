@@ -1,16 +1,11 @@
 #!/bin/bash
 
 # start the war expansion, then kill it
-java -jar /usr/share/jenkins/jenkins.war --prefix=$JENKINS_PREFIX &
-PID=$!
-
-while [ ! -d $JENKINS_HOME/war/WEB-INF/plugins ]
+java -jar /usr/share/jenkins/jenkins.war --prefix=$JENKINS_PREFIX 2>&1 | while read LOGLINE
 do
-  echo "Waiting for Jenkins to expand war"
-  sleep 2
+  echo $LOGLINE
+  [[ "${LOGLINE}" == *"Started SelectChannelConnector"* ]] && pkill -P $$ java
 done
-
-kill $PID
 
 echo Adding Jenkins customizations
 cp -r /usr/share/jenkins/war/* $JENKINS_HOME/war/
