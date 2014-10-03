@@ -1,15 +1,11 @@
-#!/bin/bash
+#!/bin/sh
 
-# start the war expansion, then kill it
-java -jar /usr/share/jenkins/jenkins.war --prefix=$JENKINS_PREFIX 2>&1 | while read LOGLINE
-do
-  echo $LOGLINE
-  [[ "${LOGLINE}" == *"Started SelectChannelConnector"* ]] && pkill -P $$ java
-done
+echo "Copying init scripts"
+mkdir -p $JENKINS_HOME/init.groovy.d
+find /usr/share/jenkins/init.groovy.d/ -type f -exec cp {} $JENKINS_HOME/init.groovy.d/ \;
 
-echo Adding Jenkins customizations
-cp -r /usr/share/jenkins/war/* $JENKINS_HOME/war/
+echo "Copying plugins"
+mkdir -p $JENKINS_HOME/plugins
+find /usr/share/jenkins/plugins/ -type f -exec cp {} $JENKINS_HOME/plugins/ \;
 
-echo "Restarting jenkins"
-
-exec java -jar /usr/share/jenkins/jenkins.war --prefix=$JENKINS_PREFIX
+exec java $JAVA_OPTS -jar /usr/share/jenkins/jenkins.war --prefix=$JENKINS_PREFIX "$@"
