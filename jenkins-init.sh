@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 echo "Copying init scripts"
 mkdir -p $JENKINS_HOME/init.groovy.d
@@ -8,4 +8,4 @@ echo "Copying plugins"
 mkdir -p $JENKINS_HOME/plugins
 find /usr/share/jenkins/plugins/ -type f -exec cp {} $JENKINS_HOME/plugins/ \;
 
-exec java $JAVA_OPTS -jar /usr/share/jenkins/jenkins.war --prefix=$JENKINS_PREFIX "$@"
+/usr/local/bin/jenkins.sh $@

@@ -12,6 +12,6 @@ USER jenkins
 # download swarm plugin
 RUN curl -sSL --create-dirs -o /usr/share/jenkins/plugins/swarm.hpi https://updates.jenkins-ci.org/latest/swarm.hpi
 
-COPY ./jenkins.sh /usr/local/bin/jenkins.sh
+COPY ./jenkins-init.sh /usr/local/bin/jenkins-init.sh
 
-ENTRYPOINT /usr/local/bin/jenkins.sh
+ENTRYPOINT /usr/local/bin/jenkins-init.sh
