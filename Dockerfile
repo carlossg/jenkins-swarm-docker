@@ -13,7 +13,7 @@ USER jenkins
 
 ENV JENKINS_SWARM_VERSION 1.20
 
-RUN curl -sSL --create-dirs -o /usr/share/jenkins/plugins/swarm.hpi https://updates.jenkins-ci.org/$JENKINS_SWARM_VERSION/swarm.hpi
+RUN curl -sSL --create-dirs -o /usr/share/jenkins/plugins/swarm.hpi https://updates.jenkins-ci.org/download/plugins/swarm/$JENKINS_SWARM_VERSION/swarm.hpi
 
 COPY ./jenkins-init.sh /usr/local/bin/jenkins-init.sh
 
