@@ -1,4 +1,4 @@
-FROM jenkins:1.565.1
+FROM jenkins:1.565.3
 
 # remove executors in master
 COPY master-executors.groovy /usr/share/jenkins/init.groovy.d/
