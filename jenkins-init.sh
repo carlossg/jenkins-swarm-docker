@@ -8,4 +8,4 @@ echo "Copying plugins"
 mkdir -p $JENKINS_HOME/plugins
 find /usr/share/jenkins/plugins/ -type f -exec cp {} $JENKINS_HOME/plugins/ \;
 
-/usr/local/bin/jenkins.sh $@
+/usr/local/bin/jenkins.sh "$@"
