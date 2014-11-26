@@ -17,4 +17,4 @@ RUN curl -sSL --create-dirs -o /usr/share/jenkins/plugins/swarm.hpi https://upda
 
 COPY ./jenkins-init.sh /usr/local/bin/jenkins-init.sh
 
-ENTRYPOINT /usr/local/bin/jenkins-init.sh
+ENTRYPOINT ["/usr/local/bin/jenkins-init.sh"]
