@@ -7,7 +7,8 @@ USER root
 
 RUN mkdir -p /usr/share/jenkins/plugins && chown -R jenkins /usr/share/jenkins/plugins /usr/share/jenkins/init.groovy.d
 
-USER jenkins
+# running as root for now to workaround Kubernetes volume permissions
+# USER jenkins
 
 # download swarm plugin
 

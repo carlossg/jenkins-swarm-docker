@@ -10,7 +10,8 @@ if [[ $# -lt 1 ]] || [[ "$1" == "--"* ]]; then
   mkdir -p $JENKINS_HOME/plugins
   find /usr/share/jenkins/plugins/ -type f -exec cp {} $JENKINS_HOME/plugins/ \;
 
-  /usr/local/bin/jenkins.sh "$@"
+  chown -R jenkins:jenkins $JENKINS_HOME
+  su - jenkins /usr/local/bin/jenkins.sh "$@"
 fi
 
 # As argument is not jenkins, assume user want to run his own process, for sample a `bash` shell to explore this image
