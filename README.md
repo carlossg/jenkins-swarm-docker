@@ -8,7 +8,7 @@ Can be used with Docker slaves from [`csanchez/jenkins-swarm-slave`](https://reg
 
 # Running
 
-    docker run --name jenkins -p 8080:8080 -p 50000:50000 csanchez/jenkins-swarm
+    docker run --name jenkins -p 8080:8080 -p 50000:50000 -v /var/jenkins_home csanchez/jenkins-swarm
 
 # Building
 
