@@ -13,7 +13,7 @@ RUN mkdir -p /usr/share/jenkins/plugins && chown -R jenkins /usr/share/jenkins/p
 
 # download swarm plugin
 
-ENV JENKINS_SWARM_VERSION 1.20
+ENV JENKINS_SWARM_VERSION 1.21
 
 RUN curl -sSL --create-dirs -o /usr/share/jenkins/plugins/swarm.hpi https://updates.jenkins-ci.org/download/plugins/swarm/$JENKINS_SWARM_VERSION/swarm.hpi
 
