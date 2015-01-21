@@ -1,22 +1,7 @@
-FROM jenkins:1.565.3
+FROM jenkins:1.580.2
+
+COPY plugins.txt /usr/share/jenkins/plugins.txt
+RUN /usr/local/bin/plugins.sh /usr/share/jenkins/plugins.txt
 
 # remove executors in master
-COPY master-executors.groovy /usr/share/jenkins/init.groovy.d/
-
-USER root
-
-RUN mkdir -p /usr/share/jenkins/plugins && chown -R jenkins /usr/share/jenkins/plugins /usr/share/jenkins/init.groovy.d
-
-# running as root for now to workaround Kubernetes volume permissions
-# https://github.com/GoogleCloudPlatform/kubernetes/issues/2630
-# USER jenkins
-
-# download swarm plugin
-
-ENV JENKINS_SWARM_VERSION 1.22
-
-RUN curl -sSL --create-dirs -o /usr/share/jenkins/plugins/swarm.hpi https://updates.jenkins-ci.org/download/plugins/swarm/$JENKINS_SWARM_VERSION/swarm.hpi
-
-COPY ./jenkins-init.sh /usr/local/bin/jenkins-init.sh
-
-ENTRYPOINT ["/usr/local/bin/jenkins-init.sh"]
+COPY master-executors.groovy /usr/share/jenkins/ref/init.groovy.d/
